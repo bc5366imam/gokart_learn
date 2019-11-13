@@ -14,12 +14,33 @@ class Hello_luigi(luigi.Task):
 
 
 
-class Addok(luigi.Task):
+class BaseSentense(luigi.Task):
+    params = luigi.Parameter()
+
     def requires(self):
-        return Hello_luigi()
+        pass
+
 
     def output(self):
-        return luigi.LocalTarget('./output/hello-ok.txt')
+        return luigi.LocalTarget('./ouput/params.txt')
+
+
+    def run(self):
+        with self.output().open('w') as f:
+            f.write(self.params)
+
+    
+
+
+
+class Addok(luigi.Task):
+    params = luigi.Parameter()
+
+    def requires(self):
+        return BaseSentense(params = self.params)
+
+    def output(self):
+        return luigi.LocalTarget('./output/params-ok.txt')
 
     def run(self):
         with self.input().open('r') as f:
