@@ -21,6 +21,14 @@
 
   Taskの出力  
 
+### パラメータを受け取る
+`params = luigi.Parameter()`で受け取る
+
+実行時に`python luigi_hello.py Addok --params='Yo' --local-scheduler`  
+のようにしてコマンドライン引数としてパラメータを受け取れる
+
+
+
 
 ### 参考サイト  
 <https://www.m3tech.blog/entry/2018/10/17/105115>
